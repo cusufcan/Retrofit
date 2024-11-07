@@ -31,12 +31,12 @@ android {
         buildConfigField(
             "String",
             "BASE_URL",
-            "https://api.themoviedb.org/3/",
+            "\"https://api.themoviedb.org/3/\"",
         )
         buildConfigField(
             type = "String",
             name = "API_KEY",
-            value = localProperties["API_KEY"].toString(),
+            value = "\"${localProperties["API_KEY"]}\"",
         )
     }
 
