@@ -36,7 +36,7 @@ android {
         buildConfigField(
             type = "String",
             name = "API_KEY",
-            value = "\"${localProperties["API_KEY"]}\"",
+            value = "\"Bearer ${localProperties["API_KEY"]}\"",
         )
     }
 
