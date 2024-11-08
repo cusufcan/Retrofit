@@ -1,6 +1,8 @@
 package com.mercan.retrofitmvvm.data.model
 
+import com.google.gson.annotations.SerializedName
+
 data class Dates(
-    val maximum: String,
-    val minimum: String,
+    @SerializedName("maximum") val maximum: String,
+    @SerializedName("minimum") val minimum: String,
 )

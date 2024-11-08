@@ -1,9 +1,11 @@
 package com.mercan.retrofitmvvm.data.model
 
+import com.google.gson.annotations.SerializedName
+
 data class MovieList(
-    val dates: Dates?,
-    val page: Long?,
-    val results: List<Movie>?,
-    val totalPages: Long?,
-    val totalResults: Long?,
+    @SerializedName("dates") val dates: Dates?,
+    @SerializedName("page") val page: Long?,
+    @SerializedName("results") val results: List<Movie>?,
+    @SerializedName("total_pages") val totalPages: Long?,
+    @SerializedName("total_results") val totalResults: Long?,
 )
