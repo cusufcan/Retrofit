@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">RetrofitMVVM</string>
+    <string name="home">Home</string>
+    <string name="explore">Explore</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="list">My List</string>
+    <string name="settings">Settings</string>
 </resources>
