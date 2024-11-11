@@ -1,8 +1,25 @@
 <resources>
+    <!-- General -->
     <string name="app_name">RetrofitMVVM</string>
+    <string name="see_all">See All</string>
+
+    <!-- Content Descriptions -->
+    <string name="movie_image">Movie Image</string>
+    <string name="star_icon">Star Icon</string>
+
+    <!-- HomeFragment -->
     <string name="home">Home</string>
+    <string name="now_playing">Now Playing</string>
+
+    <!-- ExploreFragment -->
     <string name="explore">Explore</string>
-    <string name="upcoming">Upcoming</string>
+
+    <!-- ListFragment -->
     <string name="list">My List</string>
+
+    <!-- SettingsFragment -->
     <string name="settings">Settings</string>
+
+    <!-- UpcomingFragment -->
+    <string name="upcoming">Upcoming</string>
 </resources>
