@@ -10,6 +10,7 @@
     <!-- HomeFragment -->
     <string name="home">Home</string>
     <string name="now_playing">Now Playing</string>
+    <string name="movie_rating">%1$s (%2$s)</string>
 
     <!-- ExploreFragment -->
     <string name="explore">Explore</string>
