@@ -34,7 +34,6 @@ class HomeFragment : Fragment() {
     private fun setNowPlayingList() {
         movieViewModel.fetchNowPlayingMovies()
         movieViewModel.nowPlayingMovies.observe(viewLifecycleOwner) {
-            println(it)
             homeSliderAdapter = HomeSliderAdapter(it)
             binding.nowPlayingViewPager.adapter = homeSliderAdapter
         }
