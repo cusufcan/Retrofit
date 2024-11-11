@@ -20,7 +20,7 @@ class MovieViewModel : ViewModel() {
     fun fetchNowPlayingMovies() = viewModelScope.launch {
         val response = movieRepository.getNowPlayingMovies()
         if (response.isSuccessful) {
-            popularMovies.postValue(response.body())
+            nowPlayingMovies.postValue(response.body())
         } else {
             errorMessage.postValue("Error: ${response.code()}")
         }
@@ -29,7 +29,7 @@ class MovieViewModel : ViewModel() {
     fun fetchPopularMovies() = viewModelScope.launch {
         val response = movieRepository.getPopularMovies()
         if (response.isSuccessful) {
-            nowPlayingMovies.postValue(response.body())
+            popularMovies.postValue(response.body())
         } else {
             errorMessage.postValue("Error: ${response.code()}")
         }
