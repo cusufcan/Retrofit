@@ -1,6 +1,7 @@
 package com.mercan.retrofitmvvm.data.remote
 
 import com.mercan.retrofitmvvm.core.Constants
+import com.mercan.retrofitmvvm.data.model.GenreList
 import com.mercan.retrofitmvvm.data.model.MovieList
 import retrofit2.Response
 import retrofit2.http.GET
@@ -13,4 +14,9 @@ interface MovieService {
         @Header("Authorization") token: String = Constants.API_KEY,
         @Path("route") apiRoute: String,
     ): Response<MovieList>
+
+    @GET("genre/movie/list")
+    suspend fun getGenres(
+        @Header("Authorization") token: String = Constants.API_KEY,
+    ): Response<GenreList>
 }

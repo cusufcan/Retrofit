@@ -3,20 +3,23 @@ package com.mercan.retrofitmvvm.ui.adapter.homeslider
 import androidx.recyclerview.widget.RecyclerView
 import com.mercan.retrofitmvvm.R
 import com.mercan.retrofitmvvm.core.Constants
+import com.mercan.retrofitmvvm.data.model.GenreList
 import com.mercan.retrofitmvvm.data.model.Movie
 import com.mercan.retrofitmvvm.databinding.MovieCardBigBinding
+import com.mercan.retrofitmvvm.utils.findGenresByIds
 import com.squareup.picasso.Picasso
 import java.util.Locale
 
 class HomeSliderViewHolder(private val binding: MovieCardBigBinding) :
     RecyclerView.ViewHolder(binding.root) {
-    fun bind(movie: Movie?) {
+    fun bind(movie: Movie?, genreList: GenreList) {
         val path = Constants.IMAGE_BASE_URL + movie?.posterPath
         val formattedAverage = String.format(
             Locale.getDefault(),
             "%.1f",
             movie?.voteAverage,
         )
+        val genres = genreList.findGenresByIds(movie?.genreIds)
 
         Picasso.get().load(path).into(binding.imageView)
         binding.titleTextView.text = movie?.title
@@ -25,5 +28,6 @@ class HomeSliderViewHolder(private val binding: MovieCardBigBinding) :
             formattedAverage,
             movie?.voteCount.toString(),
         )
+        binding.genresTextView.text = genres.joinToString(", ") { it.name }
     }
 }

@@ -15,4 +15,6 @@ class MovieRepository(private val movieService: MovieService) {
 
     suspend fun getUpcomingMovies() =
         movieService.getMovieList(apiRoute = Constants.UPCOMING)
+
+    suspend fun getGenres() = movieService.getGenres()
 }
