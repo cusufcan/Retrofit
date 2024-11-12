@@ -16,6 +16,8 @@ class MovieViewModel : ViewModel() {
     val nowPlayingLoading = MutableLiveData<Boolean>()
 
     val popularMovies = MutableLiveData<MovieList>()
+    val popularLoading = MutableLiveData<Boolean>()
+
     val topRatedMovies = MutableLiveData<MovieList>()
     val upcomingMovies = MutableLiveData<MovieList>()
 
@@ -35,12 +37,14 @@ class MovieViewModel : ViewModel() {
     }
 
     fun fetchPopularMovies() = viewModelScope.launch {
+        popularLoading.postValue(true)
         val response = movieRepository.getPopularMovies()
         if (response.isSuccessful) {
             popularMovies.postValue(response.body())
         } else {
             errorMessage.postValue("Error: ${response.code()}")
         }
+        popularLoading.postValue(false)
     }
 
     fun fetchTopRatedMovies() = viewModelScope.launch {

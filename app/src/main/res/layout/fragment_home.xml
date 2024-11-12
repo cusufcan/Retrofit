@@ -8,69 +8,136 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="12dp"
+        android:paddingHorizontal="12dp"
+        android:paddingTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/nowPlayingLayout"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/nowPlayingTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="4dp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="@string/now_playing"
-                android:textAppearance="?attr/textAppearanceTitleLarge"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@id/nowPlayingSeeAllButton"
-                app:layout_constraintEnd_toStartOf="@id/nowPlayingSeeAllButton"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_goneMarginEnd="4dp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/nowPlayingSeeAllButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:text="@string/see_all"
-                android:textAppearance="?attr/textAppearanceTitleMedium"
-                android:textStyle="bold"
-                app:cornerRadius="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/nowPlayingViewPager"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/nowPlayingLayout"
                 android:layout_width="match_parent"
-                android:layout_height="340dp"
-                android:layout_marginTop="8dp"
-                android:clipChildren="false"
-                android:clipToPadding="false"
-                android:orientation="horizontal"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/nowPlayingSeeAllButton" />
+                android:layout_height="wrap_content">
 
-            <ProgressBar
-                android:id="@+id/nowPlayingProgressBar"
-                android:layout_width="wrap_content"
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/nowPlayingTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="4dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@string/now_playing"
+                    android:textAppearance="?attr/textAppearanceTitleLarge"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/nowPlayingSeeAllButton"
+                    app:layout_constraintEnd_toStartOf="@id/nowPlayingSeeAllButton"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_goneMarginEnd="4dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/nowPlayingSeeAllButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="@string/see_all"
+                    android:textAppearance="?attr/textAppearanceTitleMedium"
+                    android:textStyle="bold"
+                    app:cornerRadius="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/nowPlayingViewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="340dp"
+                    android:layout_marginTop="8dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/nowPlayingSeeAllButton" />
+
+                <ProgressBar
+                    android:id="@+id/nowPlayingProgressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="@id/nowPlayingViewPager"
+                    app:layout_constraintEnd_toEndOf="@id/nowPlayingViewPager"
+                    app:layout_constraintStart_toStartOf="@id/nowPlayingViewPager"
+                    app:layout_constraintTop_toTopOf="@id/nowPlayingViewPager" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/popularMoviesLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="visible"
-                app:layout_constraintBottom_toBottomOf="@id/nowPlayingViewPager"
-                app:layout_constraintEnd_toEndOf="@id/nowPlayingViewPager"
-                app:layout_constraintStart_toStartOf="@id/nowPlayingViewPager"
-                app:layout_constraintTop_toTopOf="@id/nowPlayingViewPager" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_marginTop="12dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/popularMoviesTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="4dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@string/popular_movies"
+                    android:textAppearance="?attr/textAppearanceTitleLarge"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/popularMoviesSeeAllButton"
+                    app:layout_constraintEnd_toStartOf="@id/popularMoviesSeeAllButton"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_goneMarginEnd="4dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/popularMoviesSeeAllButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="@string/see_all"
+                    android:textAppearance="?attr/textAppearanceTitleMedium"
+                    android:textStyle="bold"
+                    app:cornerRadius="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/popularMoviesRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="340dp"
+                    android:layout_marginTop="8dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:visibility="invisible"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/popularMoviesSeeAllButton" />
+
+                <ProgressBar
+                    android:id="@+id/popularMoviesProgressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="@id/popularMoviesRecyclerView"
+                    app:layout_constraintEnd_toEndOf="@id/popularMoviesRecyclerView"
+                    app:layout_constraintStart_toStartOf="@id/popularMoviesRecyclerView"
+                    app:layout_constraintTop_toTopOf="@id/popularMoviesRecyclerView" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
