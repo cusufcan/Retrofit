@@ -199,6 +199,66 @@
                     app:layout_constraintStart_toStartOf="@id/topRatedMoviesRecyclerView"
                     app:layout_constraintTop_toTopOf="@id/topRatedMoviesRecyclerView" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/upcomingMoviesLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/upcomingMoviesTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="4dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@string/upcoming_movies"
+                    android:textAppearance="?attr/textAppearanceTitleLarge"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/upcomingMoviesSeeAllButton"
+                    app:layout_constraintEnd_toStartOf="@id/upcomingMoviesSeeAllButton"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_goneMarginEnd="4dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/upcomingMoviesSeeAllButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="@string/see_all"
+                    android:textAppearance="?attr/textAppearanceTitleMedium"
+                    android:textStyle="bold"
+                    app:cornerRadius="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/upcomingMoviesRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="340dp"
+                    android:layout_marginTop="8dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:visibility="invisible"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/upcomingMoviesSeeAllButton" />
+
+                <ProgressBar
+                    android:id="@+id/upcomingMoviesProgressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="@id/upcomingMoviesRecyclerView"
+                    app:layout_constraintEnd_toEndOf="@id/upcomingMoviesRecyclerView"
+                    app:layout_constraintStart_toStartOf="@id/upcomingMoviesRecyclerView"
+                    app:layout_constraintTop_toTopOf="@id/upcomingMoviesRecyclerView" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

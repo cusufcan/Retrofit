@@ -23,6 +23,7 @@ class HomeFragment : Fragment() {
     private lateinit var homeNowPlayingAdapter: HomeSliderAdapter
     private lateinit var homePopularMoviesAdapter: HomeVerticalCardAdapter
     private lateinit var homeTopRatedMoviesAdapter: HomeVerticalCardAdapter
+    private lateinit var homeUpcomingMoviesAdapter: HomeVerticalCardAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -41,6 +42,7 @@ class HomeFragment : Fragment() {
             fetchNowPlaying(genres)
             fetchPopularMovies(genres)
             fetchTopRatedMovies(genres)
+            fetchUpcomingMovies(genres)
         }
     }
 
@@ -85,6 +87,21 @@ class HomeFragment : Fragment() {
                     movieViewModel.topRatedMovies.value!!, genres
                 )
                 binding.topRatedMoviesRecyclerView.adapter = homeTopRatedMoviesAdapter
+            }
+        }
+    }
+
+    private fun fetchUpcomingMovies(genres: GenreList) {
+        movieViewModel.fetchUpcomingMovies()
+        movieViewModel.upcomingLoading.observe(viewLifecycleOwner) { isLoading ->
+            if (!isLoading) {
+                binding.upcomingMoviesProgressBar.visibility = View.GONE
+                binding.upcomingMoviesRecyclerView.visibility = View.VISIBLE
+
+                homeUpcomingMoviesAdapter = HomeVerticalCardAdapter(
+                    movieViewModel.upcomingMovies.value!!, genres
+                )
+                binding.upcomingMoviesRecyclerView.adapter = homeUpcomingMoviesAdapter
             }
         }
     }
