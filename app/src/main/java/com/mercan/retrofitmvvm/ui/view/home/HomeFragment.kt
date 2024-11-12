@@ -9,8 +9,8 @@ import androidx.fragment.app.viewModels
 import com.mercan.retrofitmvvm.core.Constants
 import com.mercan.retrofitmvvm.data.model.GenreList
 import com.mercan.retrofitmvvm.databinding.FragmentHomeBinding
-import com.mercan.retrofitmvvm.ui.adapter.homepopularmovies.HomePopularMoviesAdapter
 import com.mercan.retrofitmvvm.ui.adapter.homeslider.HomeSliderAdapter
+import com.mercan.retrofitmvvm.ui.adapter.homeverticalcard.HomeVerticalCardAdapter
 import com.mercan.retrofitmvvm.ui.viewmodel.MovieViewModel
 import com.mercan.retrofitmvvm.utils.setCompositeScroll
 import com.mercan.retrofitmvvm.utils.startAutoScroll
@@ -21,7 +21,8 @@ class HomeFragment : Fragment() {
 
     private val movieViewModel: MovieViewModel by viewModels()
     private lateinit var homeNowPlayingAdapter: HomeSliderAdapter
-    private lateinit var homePopularMoviesAdapter: HomePopularMoviesAdapter
+    private lateinit var homePopularMoviesAdapter: HomeVerticalCardAdapter
+    private lateinit var homeTopRatedMoviesAdapter: HomeVerticalCardAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -39,6 +40,7 @@ class HomeFragment : Fragment() {
         movieViewModel.genres.observe(viewLifecycleOwner) { genres ->
             fetchNowPlaying(genres)
             fetchPopularMovies(genres)
+            fetchTopRatedMovies(genres)
         }
     }
 
@@ -64,10 +66,25 @@ class HomeFragment : Fragment() {
                 binding.popularMoviesProgressBar.visibility = View.GONE
                 binding.popularMoviesRecyclerView.visibility = View.VISIBLE
 
-                homePopularMoviesAdapter = HomePopularMoviesAdapter(
+                homePopularMoviesAdapter = HomeVerticalCardAdapter(
                     movieViewModel.popularMovies.value!!, genres
                 )
                 binding.popularMoviesRecyclerView.adapter = homePopularMoviesAdapter
+            }
+        }
+    }
+
+    private fun fetchTopRatedMovies(genres: GenreList) {
+        movieViewModel.fetchTopRatedMovies()
+        movieViewModel.topRatedLoading.observe(viewLifecycleOwner) { isLoading ->
+            if (!isLoading) {
+                binding.topRatedMoviesProgressBar.visibility = View.GONE
+                binding.topRatedMoviesRecyclerView.visibility = View.VISIBLE
+
+                homeTopRatedMoviesAdapter = HomeVerticalCardAdapter(
+                    movieViewModel.topRatedMovies.value!!, genres
+                )
+                binding.topRatedMoviesRecyclerView.adapter = homeTopRatedMoviesAdapter
             }
         }
     }

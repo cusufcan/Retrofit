@@ -1,4 +1,4 @@
-package com.mercan.retrofitmvvm.ui.adapter.homepopularmovies
+package com.mercan.retrofitmvvm.ui.adapter.homeverticalcard
 
 import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
@@ -12,7 +12,7 @@ import com.mercan.retrofitmvvm.utils.formatToString
 import com.squareup.picasso.Picasso
 import java.util.Locale
 
-class HomePopularMoviesViewHolder(
+class HomeVerticalCardViewHolder(
     private val binding: MovieCardVerticalBinding,
     private val context: Context
 ) : RecyclerView.ViewHolder(binding.root) {
