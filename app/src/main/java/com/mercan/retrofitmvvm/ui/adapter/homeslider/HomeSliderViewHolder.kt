@@ -7,6 +7,7 @@ import com.mercan.retrofitmvvm.data.model.GenreList
 import com.mercan.retrofitmvvm.data.model.Movie
 import com.mercan.retrofitmvvm.databinding.MovieCardBigBinding
 import com.mercan.retrofitmvvm.utils.findGenresByIds
+import com.mercan.retrofitmvvm.utils.formatToString
 import com.squareup.picasso.Picasso
 import java.util.Locale
 
@@ -26,7 +27,7 @@ class HomeSliderViewHolder(private val binding: MovieCardBigBinding) :
         binding.reviewTextView.text = binding.root.context.getString(
             R.string.movie_rating,
             formattedAverage,
-            movie?.voteCount.toString(),
+            movie?.voteCount?.formatToString(),
         )
         binding.genresTextView.text = genres.joinToString(", ") { it.name }
     }
