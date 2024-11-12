@@ -10,8 +10,7 @@ import com.mercan.retrofitmvvm.databinding.MovieCardBigBinding
 class HomeSliderAdapter(
     private val movies: MovieList,
     private val genres: GenreList,
-) :
-    RecyclerView.Adapter<HomeSliderViewHolder>() {
+) : RecyclerView.Adapter<HomeSliderViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeSliderViewHolder {
         val binding = MovieCardBigBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
