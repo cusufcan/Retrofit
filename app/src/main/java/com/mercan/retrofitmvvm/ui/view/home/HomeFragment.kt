@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.viewpager2.widget.CompositePageTransformer
-import androidx.viewpager2.widget.MarginPageTransformer
+import com.mercan.retrofitmvvm.core.Constants
 import com.mercan.retrofitmvvm.databinding.FragmentHomeBinding
 import com.mercan.retrofitmvvm.ui.adapter.homeslider.HomeSliderAdapter
 import com.mercan.retrofitmvvm.ui.viewmodel.MovieViewModel
-import kotlin.math.abs
+import com.mercan.retrofitmvvm.utils.setCompositeScroll
+import com.mercan.retrofitmvvm.utils.startAutoScroll
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
@@ -32,20 +32,26 @@ class HomeFragment : Fragment() {
     }
 
     private fun setNowPlayingList() {
-        movieViewModel.fetchNowPlayingMovies()
-        movieViewModel.nowPlayingMovies.observe(viewLifecycleOwner) {
-            homeSliderAdapter = HomeSliderAdapter(it)
-            binding.nowPlayingViewPager.adapter = homeSliderAdapter
+        movieViewModel.fetchGenres()
+        movieViewModel.genres.observe(viewLifecycleOwner) { genres ->
+            movieViewModel.fetchNowPlayingMovies()
+            movieViewModel.nowPlayingLoading.observe(viewLifecycleOwner) { isLoading ->
+                if (!isLoading) {
+                    binding.nowPlayingProgressBar.visibility = View.GONE
+                    binding.nowPlayingViewPager.visibility = View.VISIBLE
+
+                    homeSliderAdapter = HomeSliderAdapter(
+                        movieViewModel.nowPlayingMovies.value!!, genres
+                    )
+                    binding.nowPlayingViewPager.adapter = homeSliderAdapter
+                }
+            }
         }
     }
 
     private fun setViewPager() {
-        val compositePageTransformer = CompositePageTransformer()
-        compositePageTransformer.addTransformer(MarginPageTransformer(30))
-        compositePageTransformer.addTransformer { page, position ->
-            val r = 1 - abs(position)
-            page.scaleY = 0.80f + r * 0.20f
-        }
-        binding.nowPlayingViewPager.setPageTransformer(compositePageTransformer)
+        binding.nowPlayingViewPager.setCompositeScroll()
+        binding.nowPlayingViewPager.startAutoScroll(viewLifecycleOwner, Constants.DURATION_NORMAL)
+        binding.nowPlayingViewPager.offscreenPageLimit = 3
     }
 }
