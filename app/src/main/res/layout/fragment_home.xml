@@ -51,15 +51,26 @@
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/nowPlayingViewPager"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="340dp"
                 android:layout_marginTop="8dp"
                 android:clipChildren="false"
                 android:clipToPadding="false"
                 android:orientation="horizontal"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/nowPlayingSeeAllButton" />
+
+            <ProgressBar
+                android:id="@+id/nowPlayingProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@id/nowPlayingViewPager"
+                app:layout_constraintEnd_toEndOf="@id/nowPlayingViewPager"
+                app:layout_constraintStart_toStartOf="@id/nowPlayingViewPager"
+                app:layout_constraintTop_toTopOf="@id/nowPlayingViewPager" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
