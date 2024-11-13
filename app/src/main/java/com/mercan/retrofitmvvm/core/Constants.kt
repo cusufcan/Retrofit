@@ -8,6 +8,8 @@ object Constants {
 
     const val DURATION_NORMAL = 5000L
 
+    const val NORMAL_TAG = "1"
+
     const val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500"
 
     const val NOW_PLAYING = "now_playing"
