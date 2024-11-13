@@ -16,7 +16,11 @@ class HomeVerticalCardViewHolder(
     private val binding: MovieCardVerticalBinding,
     private val context: Context
 ) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(movie: Movie?, genreList: GenreList) {
+    fun bind(
+        movie: Movie?,
+        genreList: GenreList,
+        onItemClick: (movie: Movie?) -> Unit,
+    ) {
         val path = Constants.IMAGE_BASE_URL + movie?.posterPath
         val formattedAverage = String.format(
             Locale.getDefault(),
@@ -39,5 +43,9 @@ class HomeVerticalCardViewHolder(
             formattedYear,
             genres.first().name,
         )
+
+        binding.root.setOnClickListener {
+            onItemClick(movie)
+        }
     }
 }
