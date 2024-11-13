@@ -56,7 +56,9 @@ class HomeFragment : Fragment() {
                 binding.nowPlayingViewPager.visibility = View.VISIBLE
 
                 homeNowPlayingAdapter = HomeSliderAdapter(
-                    movieViewModel.nowPlayingMovies.value!!, genres
+                    parentFragmentManager,
+                    movieViewModel.nowPlayingMovies.value!!,
+                    genres,
                 )
                 binding.nowPlayingViewPager.adapter = homeNowPlayingAdapter
             }
@@ -71,7 +73,9 @@ class HomeFragment : Fragment() {
                 binding.popularMoviesRecyclerView.visibility = View.VISIBLE
 
                 homePopularMoviesAdapter = HomeVerticalCardAdapter(
-                    movieViewModel.popularMovies.value!!, genres
+                    parentFragmentManager,
+                    movieViewModel.popularMovies.value!!,
+                    genres,
                 )
                 binding.popularMoviesRecyclerView.adapter = homePopularMoviesAdapter
             }
@@ -86,7 +90,9 @@ class HomeFragment : Fragment() {
                 binding.topRatedMoviesRecyclerView.visibility = View.VISIBLE
 
                 homeTopRatedMoviesAdapter = HomeVerticalCardAdapter(
-                    movieViewModel.topRatedMovies.value!!, genres
+                    parentFragmentManager,
+                    movieViewModel.topRatedMovies.value!!,
+                    genres,
                 )
                 binding.topRatedMoviesRecyclerView.adapter = homeTopRatedMoviesAdapter
             }
@@ -101,7 +107,9 @@ class HomeFragment : Fragment() {
                 binding.upcomingMoviesRecyclerView.visibility = View.VISIBLE
 
                 homeUpcomingMoviesAdapter = HomeVerticalCardAdapter(
-                    movieViewModel.upcomingMovies.value!!, genres
+                    parentFragmentManager,
+                    movieViewModel.upcomingMovies.value!!,
+                    genres,
                 )
                 binding.upcomingMoviesRecyclerView.adapter = homeUpcomingMoviesAdapter
             }
