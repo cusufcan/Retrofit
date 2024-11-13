@@ -5,7 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.mercan.retrofitmvvm.core.Constants
 import com.mercan.retrofitmvvm.data.model.GenreList
 import com.mercan.retrofitmvvm.databinding.FragmentHomeBinding
@@ -19,7 +20,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private val movieViewModel: MovieViewModel by viewModels()
+    private val movieViewModel: MovieViewModel by activityViewModels()
     private lateinit var homeNowPlayingAdapter: HomeSliderAdapter
     private lateinit var homePopularMoviesAdapter: HomeVerticalCardAdapter
     private lateinit var homeTopRatedMoviesAdapter: HomeVerticalCardAdapter
@@ -32,6 +33,7 @@ class HomeFragment : Fragment() {
 
         fetchData()
         setViewPager()
+        setSeeAllOnClicks()
 
         return binding.root
     }
@@ -110,5 +112,41 @@ class HomeFragment : Fragment() {
         binding.nowPlayingViewPager.setCompositeScroll()
         binding.nowPlayingViewPager.startAutoScroll(viewLifecycleOwner, Constants.DURATION_NORMAL)
         binding.nowPlayingViewPager.offscreenPageLimit = 3
+    }
+
+    private fun setSeeAllOnClicks() {
+        val navController = findNavController()
+
+        binding.nowPlayingSeeAllButton.setOnClickListener {
+            navController.navigate(
+                HomeFragmentDirections.actionHomeFragmentToSeeAllFragment(
+                    Constants.NOW_PLAYING
+                )
+            )
+        }
+
+        binding.popularMoviesSeeAllButton.setOnClickListener {
+            navController.navigate(
+                HomeFragmentDirections.actionHomeFragmentToSeeAllFragment(
+                    Constants.POPULAR
+                )
+            )
+        }
+
+        binding.topRatedMoviesSeeAllButton.setOnClickListener {
+            navController.navigate(
+                HomeFragmentDirections.actionHomeFragmentToSeeAllFragment(
+                    Constants.TOP_RATED
+                )
+            )
+        }
+
+        binding.upcomingMoviesSeeAllButton.setOnClickListener {
+            navController.navigate(
+                HomeFragmentDirections.actionHomeFragmentToSeeAllFragment(
+                    Constants.UPCOMING
+                )
+            )
+        }
     }
 }
