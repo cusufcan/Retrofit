@@ -8,4 +8,8 @@ data class MovieList(
     @SerializedName("results") val results: List<Movie>?,
     @SerializedName("total_pages") val totalPages: Long?,
     @SerializedName("total_results") val totalResults: Long?,
-)
+) {
+    companion object {
+        fun empty() = MovieList(null, null, null, null, null)
+    }
+}
