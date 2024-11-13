@@ -7,6 +7,10 @@
     <string name="movie_image">Movie Image</string>
     <string name="star_icon">Star Icon</string>
     <string name="back">Back</string>
+    <string name="close">Close</string>
+    <string name="favorite">Favorite</string>
+    <string name="watchlist">Watchlist</string>
+    <string name="video_library">Video Library</string>
 
     <!-- HomeFragment -->
     <string name="home">Home</string>
@@ -28,4 +32,9 @@
 
     <!-- UpcomingFragment -->
     <string name="upcoming">Upcoming</string>
+
+    <!-- BottomSheetLayout -->
+    <string name="my_favorites">My Favorites</string>
+    <string name="my_watchlist">My Watchlist</string>
+    <string name="details_and_more">Details and more</string>
 </resources>
