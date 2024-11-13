@@ -13,7 +13,11 @@ import java.util.Locale
 
 class HomeSliderViewHolder(private val binding: MovieCardBigBinding) :
     RecyclerView.ViewHolder(binding.root) {
-    fun bind(movie: Movie?, genreList: GenreList) {
+    fun bind(
+        movie: Movie?,
+        genreList: GenreList,
+        onItemClick: (Movie?) -> Unit,
+    ) {
         val path = Constants.IMAGE_BASE_URL + movie?.posterPath
         val formattedAverage = String.format(
             Locale.getDefault(),
@@ -30,5 +34,9 @@ class HomeSliderViewHolder(private val binding: MovieCardBigBinding) :
             movie?.voteCount?.formatToString(),
         )
         binding.genresTextView.text = genres.joinToString(", ") { it.name }
+
+        binding.root.setOnClickListener {
+            onItemClick(movie)
+        }
     }
 }
