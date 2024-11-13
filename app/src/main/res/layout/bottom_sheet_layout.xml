@@ -3,21 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@android:color/transparent">
-
-    <View
-        android:id="@+id/backgroundView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:alpha="1"
-        android:foreground="?attr/colorSurfaceContainer"
-        android:foregroundTintMode="src_atop"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/contentLayout"
@@ -31,9 +17,8 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/imageCardView"
-            android:layout_width="85dp"
-            android:layout_height="150dp"
-            android:scaleType="centerCrop"
+            android:layout_width="100dp"
+            android:layout_height="175dp"
             app:cardCornerRadius="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -43,7 +28,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/avatar_dummy_image"
-                android:contentDescription="@string/movie_image" />
+                android:contentDescription="@string/movie_image"
+                android:scaleType="centerCrop" />
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.textview.MaterialTextView
@@ -51,10 +37,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginBottom="16dp"
             android:ellipsize="end"
             android:maxLines="2"
-            android:textAppearance="?attr/textAppearanceBodyLarge"
+            android:textAppearance="?attr/textAppearanceTitleLarge"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@id/closeFloatingActionButton"
             app:layout_constraintStart_toEndOf="@id/imageCardView"
@@ -77,8 +62,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:maxLines="2"
             android:textAppearance="?attr/textAppearanceBodyMedium"
@@ -92,11 +76,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="8dp"
             android:ellipsize="end"
-            android:maxLines="5"
-            android:textAppearance="?attr/textAppearanceBodySmall"
+            android:maxLines="6"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@id/closeFloatingActionButton"
             app:layout_constraintStart_toEndOf="@id/imageCardView"
@@ -186,7 +169,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="12dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/favoriteLayout" />
@@ -194,9 +177,9 @@
     <com.google.android.material.button.MaterialButton
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="18dp"
         android:backgroundTint="?attr/colorOnPrimary"
         android:drawableLeft="@drawable/info"
         android:drawableRight="@drawable/chevron_right"
