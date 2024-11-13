@@ -57,26 +57,31 @@ class SeeAllFragment : Fragment() {
 
         binding.seeAllRecyclerView.adapter = when (from) {
             Constants.NOW_PLAYING -> SeeAllAdapter(
+                parentFragmentManager,
                 movieViewModel.nowPlayingMovies.value ?: MovieList.empty(),
                 movieViewModel.genres.value ?: GenreList.empty()
             )
 
             Constants.POPULAR -> SeeAllAdapter(
+                parentFragmentManager,
                 movieViewModel.popularMovies.value ?: MovieList.empty(),
                 movieViewModel.genres.value ?: GenreList.empty()
             )
 
             Constants.TOP_RATED -> SeeAllAdapter(
+                parentFragmentManager,
                 movieViewModel.topRatedMovies.value ?: MovieList.empty(),
                 movieViewModel.genres.value ?: GenreList.empty()
             )
 
             Constants.UPCOMING -> SeeAllAdapter(
+                parentFragmentManager,
                 movieViewModel.upcomingMovies.value ?: MovieList.empty(),
                 movieViewModel.genres.value ?: GenreList.empty()
             )
 
             else -> SeeAllAdapter(
+                parentFragmentManager,
                 movieViewModel.upcomingMovies.value ?: MovieList.empty(),
                 movieViewModel.genres.value ?: GenreList.empty()
             )

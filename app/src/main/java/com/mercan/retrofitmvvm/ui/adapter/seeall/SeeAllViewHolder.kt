@@ -13,7 +13,11 @@ import java.util.Locale
 
 class SeeAllViewHolder(private val binding: MovieCardBigWrapBinding) :
     RecyclerView.ViewHolder(binding.root) {
-    fun bind(movie: Movie?, genreList: GenreList) {
+    fun bind(
+        movie: Movie?,
+        genreList: GenreList,
+        onItemClick: (movie: Movie?) -> Unit,
+    ) {
         val path = Constants.IMAGE_BASE_URL + movie?.posterPath
         val formattedAverage = String.format(
             Locale.getDefault(),
@@ -30,5 +34,9 @@ class SeeAllViewHolder(private val binding: MovieCardBigWrapBinding) :
             movie?.voteCount?.formatToString(),
         )
         binding.genresTextView.text = genres.joinToString(", ") { it.name }
+
+        binding.root.setOnClickListener {
+            onItemClick(movie)
+        }
     }
 }
