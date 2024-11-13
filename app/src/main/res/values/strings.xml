@@ -6,6 +6,7 @@
     <!-- Content Descriptions -->
     <string name="movie_image">Movie Image</string>
     <string name="star_icon">Star Icon</string>
+    <string name="back">Back</string>
 
     <!-- HomeFragment -->
     <string name="home">Home</string>
