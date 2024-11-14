@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mercan.retrofitmvvm.core.Constants
+import com.mercan.retrofitmvvm.core.Route
 import com.mercan.retrofitmvvm.data.model.GenreList
 import com.mercan.retrofitmvvm.data.model.MovieList
 import com.mercan.retrofitmvvm.databinding.MovieCardBigBinding
@@ -26,7 +27,10 @@ class HomeSliderAdapter(
 
     override fun onBindViewHolder(holder: HomeSliderViewHolder, position: Int) {
         holder.bind(movies.results?.get(position), genres) {
-            HomeBottomSheetDialog(it).show(fragmentManager, Constants.NORMAL_TAG)
+            HomeBottomSheetDialog(
+                it,
+                Route.HOME,
+            ).show(fragmentManager, Constants.NORMAL_TAG)
         }
     }
 }
