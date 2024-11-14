@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_seeAllFragment"
             app:destination="@id/seeAllFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
     <fragment
         android:id="@+id/exploreFragment"
@@ -43,5 +46,13 @@
             android:name="from"
             android:defaultValue="popular"
             app:argType="string" />
+        <action
+            android:id="@+id/action_seeAllFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.mercan.retrofitmvvm.ui.view.detail.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" />
 </navigation>
