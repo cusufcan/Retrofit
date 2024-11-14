@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.mercan.retrofitmvvm.R
 import com.mercan.retrofitmvvm.core.Constants
 import com.mercan.retrofitmvvm.data.model.Movie
 import com.mercan.retrofitmvvm.databinding.BottomSheetLayoutBinding
@@ -39,8 +38,6 @@ class HomeBottomSheetDialog(private val movie: Movie?) : BottomSheetDialogFragme
         return super.onCreateDialog(savedInstanceState)
     }
 
-    override fun getTheme() = R.style.CustomBottomSheetDialog
-
     private fun bind(
         movie: Movie?
     ) {
@@ -52,8 +49,21 @@ class HomeBottomSheetDialog(private val movie: Movie?) : BottomSheetDialogFragme
         binding.yearTextView.text = formattedYear
         binding.descriptionTextView.text = movie?.overview
 
+        setOnClickListeners()
+    }
+
+    private fun setOnClickListeners() {
         binding.closeFloatingActionButton.setOnClickListener {
-            dialog?.hide()
+            dialog?.dismiss()
         }
+
+        binding.detailsButton.setOnClickListener {
+            dialog?.dismiss()
+        }
+    }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
     }
 }
