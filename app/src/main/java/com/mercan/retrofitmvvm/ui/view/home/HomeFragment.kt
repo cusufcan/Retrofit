@@ -12,6 +12,7 @@ import com.mercan.retrofitmvvm.data.model.GenreList
 import com.mercan.retrofitmvvm.databinding.FragmentHomeBinding
 import com.mercan.retrofitmvvm.ui.adapter.homeslider.HomeSliderAdapter
 import com.mercan.retrofitmvvm.ui.adapter.homeverticalcard.HomeVerticalCardAdapter
+import com.mercan.retrofitmvvm.ui.view.main.MainActivity
 import com.mercan.retrofitmvvm.ui.viewmodel.MovieViewModel
 import com.mercan.retrofitmvvm.utils.setCompositeScroll
 import com.mercan.retrofitmvvm.utils.startAutoScroll
@@ -30,6 +31,9 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        val mainActivity = activity as MainActivity
+        mainActivity.binding.appBottomNavigationView.visibility = View.VISIBLE
 
         fetchData()
         setViewPager()

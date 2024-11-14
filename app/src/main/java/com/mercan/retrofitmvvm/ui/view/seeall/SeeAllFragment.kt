@@ -13,6 +13,7 @@ import com.mercan.retrofitmvvm.data.model.GenreList
 import com.mercan.retrofitmvvm.data.model.MovieList
 import com.mercan.retrofitmvvm.databinding.FragmentSeeAllBinding
 import com.mercan.retrofitmvvm.ui.adapter.seeall.SeeAllAdapter
+import com.mercan.retrofitmvvm.ui.view.main.MainActivity
 import com.mercan.retrofitmvvm.ui.viewmodel.MovieViewModel
 
 class SeeAllFragment : Fragment() {
@@ -26,6 +27,9 @@ class SeeAllFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSeeAllBinding.inflate(inflater, container, false)
+
+        val mainActivity = activity as MainActivity
+        mainActivity.binding.appBottomNavigationView.visibility = View.VISIBLE
 
         val from = SeeAllFragmentArgs.fromBundle(requireArguments()).from
 
