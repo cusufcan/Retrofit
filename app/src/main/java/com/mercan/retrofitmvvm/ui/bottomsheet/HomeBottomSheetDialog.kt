@@ -5,15 +5,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.mercan.retrofitmvvm.core.Constants
+import com.mercan.retrofitmvvm.core.Route
 import com.mercan.retrofitmvvm.data.model.Movie
 import com.mercan.retrofitmvvm.databinding.BottomSheetLayoutBinding
+import com.mercan.retrofitmvvm.ui.view.home.HomeFragmentDirections
+import com.mercan.retrofitmvvm.ui.view.seeall.SeeAllFragmentDirections
 import com.squareup.picasso.Picasso
 
-class HomeBottomSheetDialog(private val movie: Movie?) : BottomSheetDialogFragment() {
+class HomeBottomSheetDialog(
+    private val movie: Movie?,
+    private val from: Route,
+) : BottomSheetDialogFragment() {
     private var _binding: BottomSheetLayoutBinding? = null
     private val binding get() = _binding!!
 
@@ -59,6 +66,12 @@ class HomeBottomSheetDialog(private val movie: Movie?) : BottomSheetDialogFragme
 
         binding.detailsButton.setOnClickListener {
             dialog?.dismiss()
+            findNavController().navigate(
+                when (from) {
+                    Route.HOME -> HomeFragmentDirections.actionHomeFragmentToDetailFragment()
+                    Route.SEE_ALL -> SeeAllFragmentDirections.actionSeeAllFragmentToDetailFragment()
+                }
+            )
         }
     }
 
