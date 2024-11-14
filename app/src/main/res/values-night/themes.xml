@@ -1,12 +1,4 @@
 <resources>
 
     <style name="Base.Theme.RetrofitMVVM" parent="Theme.Material3.DayNight.NoActionBar" />
-
-    <style name="CustomBottomSheetDialog" parent="Theme.Design.BottomSheetDialog">
-        <item name="bottomSheetStyle">@style/CustomBottomSheetStyle</item>
-    </style>
-
-    <style name="CustomBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
-        <item name="android:background">#CC000000</item>
-    </style>
 </resources>
