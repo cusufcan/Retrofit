@@ -2,7 +2,7 @@
 
     <style name="Base.Theme.RetrofitMVVM" parent="Theme.Material3.DayNight.NoActionBar" />
 
-    <style name="CustomBottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
+    <style name="CustomBottomSheetDialog" parent="Theme.Design.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/CustomBottomSheetStyle</item>
     </style>
 
