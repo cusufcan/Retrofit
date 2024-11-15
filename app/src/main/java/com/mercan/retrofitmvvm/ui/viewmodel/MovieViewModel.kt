@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mercan.retrofitmvvm.data.model.GenreList
-import com.mercan.retrofitmvvm.data.model.Movie
 import com.mercan.retrofitmvvm.data.model.MovieList
 import com.mercan.retrofitmvvm.data.remote.RetrofitInstance
 import com.mercan.retrofitmvvm.data.repository.MovieRepository
@@ -27,9 +26,7 @@ class MovieViewModel : ViewModel() {
 
     val genres = MutableLiveData<GenreList>()
 
-    val errorMessage = MutableLiveData<String>()
-
-    val selectedMovie = MutableLiveData<Movie?>()
+    private val errorMessage = MutableLiveData<String>()
 
     fun fetchNowPlayingMovies() = viewModelScope.launch {
         nowPlayingLoading.postValue(true)
