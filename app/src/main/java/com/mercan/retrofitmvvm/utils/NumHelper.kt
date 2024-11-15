@@ -16,3 +16,9 @@ fun Number.formatToString(): String {
         DecimalFormat("#,##0").format(numValue)
     }
 }
+
+fun Number.formatToTime(): String {
+    val hours = this.toInt() / 60
+    val minutes = this.toInt() % 60
+    return "${hours}h ${minutes}m"
+}
