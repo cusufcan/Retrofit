@@ -5,6 +5,7 @@
 
     <!-- Content Descriptions -->
     <string name="movie_image">Movie Image</string>
+    <string name="player_image">Player Image</string>
     <string name="star_icon">Star Icon</string>
     <string name="back">Back</string>
     <string name="close">Close</string>
@@ -37,4 +38,8 @@
     <string name="my_favorites">My Favorites</string>
     <string name="my_watchlist">My Watchlist</string>
     <string name="details_and_more">Details and more</string>
+
+    <!-- DetailFragment -->
+    <string name="duration">Duration</string>
+    <string name="movie_rating_detail">%1$s (%2$s reviews)</string>
 </resources>
