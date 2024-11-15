@@ -54,5 +54,10 @@
         android:id="@+id/detailFragment"
         android:name="com.mercan.retrofitmvvm.ui.view.detail.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="id"
+            android:defaultValue="0L"
+            app:argType="long" />
+    </fragment>
 </navigation>
