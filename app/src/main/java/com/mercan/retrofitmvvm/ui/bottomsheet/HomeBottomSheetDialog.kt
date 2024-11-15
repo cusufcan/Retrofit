@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -15,6 +16,7 @@ import com.mercan.retrofitmvvm.data.model.Movie
 import com.mercan.retrofitmvvm.databinding.BottomSheetLayoutBinding
 import com.mercan.retrofitmvvm.ui.view.home.HomeFragmentDirections
 import com.mercan.retrofitmvvm.ui.view.seeall.SeeAllFragmentDirections
+import com.mercan.retrofitmvvm.ui.viewmodel.MovieViewModel
 import com.squareup.picasso.Picasso
 
 class HomeBottomSheetDialog(
@@ -23,6 +25,8 @@ class HomeBottomSheetDialog(
 ) : BottomSheetDialogFragment() {
     private var _binding: BottomSheetLayoutBinding? = null
     private val binding get() = _binding!!
+
+    private val movieViewModel: MovieViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -65,6 +69,7 @@ class HomeBottomSheetDialog(
         }
 
         binding.detailsButton.setOnClickListener {
+            movieViewModel.selectedMovie.value = movie
             dialog?.dismiss()
             findNavController().navigate(
                 when (from) {
