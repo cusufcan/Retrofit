@@ -41,5 +41,9 @@
 
     <!-- DetailFragment -->
     <string name="duration">Duration</string>
+    <string name="overview">Overview</string>
+    <string name="cast">Cast</string>
     <string name="movie_rating_detail">%1$s (%2$s reviews)</string>
+    <string name="recommendations">Recommendations</string>
+    <string name="trailers">Trailers</string>
 </resources>
