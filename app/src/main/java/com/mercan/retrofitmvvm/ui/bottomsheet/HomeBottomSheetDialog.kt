@@ -13,6 +13,7 @@ import com.mercan.retrofitmvvm.core.Constants
 import com.mercan.retrofitmvvm.core.Route
 import com.mercan.retrofitmvvm.data.model.Movie
 import com.mercan.retrofitmvvm.databinding.BottomSheetLayoutBinding
+import com.mercan.retrofitmvvm.ui.view.detail.DetailFragmentDirections
 import com.mercan.retrofitmvvm.ui.view.home.HomeFragmentDirections
 import com.mercan.retrofitmvvm.ui.view.seeall.SeeAllFragmentDirections
 import com.squareup.picasso.Picasso
@@ -75,6 +76,9 @@ class HomeBottomSheetDialog(
 
                     Route.SEE_ALL ->
                         SeeAllFragmentDirections.actionSeeAllFragmentToDetailFragment(id)
+
+                    Route.DETAILS ->
+                        DetailFragmentDirections.actionDetailFragmentSelf(id)
                 }
             )
         }
