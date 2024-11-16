@@ -36,4 +36,12 @@ object RetrofitInstance {
             .build()
             .create(MovieRecommendationsService::class.java)
     }
+
+    val movieTrailersService: MovieTrailersService by lazy {
+        Retrofit.Builder()
+            .baseUrl(Constants.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(MovieTrailersService::class.java)
+    }
 }
