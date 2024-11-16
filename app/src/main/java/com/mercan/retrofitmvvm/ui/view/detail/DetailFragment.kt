@@ -13,6 +13,7 @@ import com.mercan.retrofitmvvm.data.model.credits.Credits
 import com.mercan.retrofitmvvm.data.model.detail.MovieDetail
 import com.mercan.retrofitmvvm.databinding.FragmentDetailBinding
 import com.mercan.retrofitmvvm.ui.adapter.detail.DetailPlayersAdapter
+import com.mercan.retrofitmvvm.ui.adapter.detail.DetailTabLayoutAdapter
 import com.mercan.retrofitmvvm.ui.view.main.MainActivity
 import com.mercan.retrofitmvvm.ui.viewmodel.MovieCreditsViewModel
 import com.mercan.retrofitmvvm.ui.viewmodel.MovieDetailViewModel
@@ -85,6 +86,7 @@ class DetailFragment : Fragment() {
         val formattedDate = movieDetail?.releaseDate?.formatDate()
         val directorName = movieCredits?.crew?.find { it.job == "Director" }?.name
         val playersAdapter = DetailPlayersAdapter(movieCredits?.cast)
+        val tabLayoutAdapter = DetailTabLayoutAdapter(childFragmentManager, requireActivity())
 
         // Image
         Picasso.get().load(imagePath).into(binding.imageView)
@@ -110,7 +112,6 @@ class DetailFragment : Fragment() {
         binding.durationTextView.text = movieDetail?.runtime?.formatToTime()
 
         // Director
-        println(movieCredits)
         binding.directorNameChip.text = directorName
 
         // Overview
@@ -120,6 +121,8 @@ class DetailFragment : Fragment() {
         binding.playersRecyclerView.adapter = playersAdapter
 
         // TabLayoutAdapter
+        binding.tabLayout.setupWithViewPager(binding.viewPager)
+        binding.viewPager.adapter = tabLayoutAdapter
     }
 
     override fun onDestroyView() {
