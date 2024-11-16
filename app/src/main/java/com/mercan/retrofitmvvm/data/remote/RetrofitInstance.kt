@@ -20,4 +20,12 @@ object RetrofitInstance {
             .build()
             .create(MovieDetailService::class.java)
     }
+
+    val movieCreditsService: MovieCreditsService by lazy {
+        Retrofit.Builder()
+            .baseUrl(Constants.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(MovieCreditsService::class.java)
+    }
 }
