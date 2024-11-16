@@ -9,9 +9,12 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.mercan.retrofitmvvm.R
 import com.mercan.retrofitmvvm.core.Constants
+import com.mercan.retrofitmvvm.data.model.credits.Credits
 import com.mercan.retrofitmvvm.data.model.detail.MovieDetail
 import com.mercan.retrofitmvvm.databinding.FragmentDetailBinding
+import com.mercan.retrofitmvvm.ui.adapter.detail.DetailPlayersAdapter
 import com.mercan.retrofitmvvm.ui.view.main.MainActivity
+import com.mercan.retrofitmvvm.ui.viewmodel.MovieCreditsViewModel
 import com.mercan.retrofitmvvm.ui.viewmodel.MovieDetailViewModel
 import com.mercan.retrofitmvvm.utils.formatDate
 import com.mercan.retrofitmvvm.utils.formatToString
@@ -23,11 +26,11 @@ class DetailFragment : Fragment() {
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
 
-    private val movieViewModel: MovieDetailViewModel by activityViewModels()
+    private val movieDetailViewModel: MovieDetailViewModel by activityViewModels()
+    private val movieCreditsViewModel: MovieCreditsViewModel by activityViewModels()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentDetailBinding.inflate(inflater, container, false)
 
@@ -51,19 +54,28 @@ class DetailFragment : Fragment() {
 
     private fun setData() {
         val movieId = arguments?.getLong("id")
-        movieViewModel.getMovieById(movieId ?: 0)
-        movieViewModel.movieDetailLoading.observe(viewLifecycleOwner) { isLoading ->
+        movieDetailViewModel.getMovieById(movieId ?: 0)
+        movieDetailViewModel.movieDetailLoading.observe(viewLifecycleOwner) { isLoading ->
             if (!isLoading) {
-                binding.progressBar.visibility = View.GONE
-                binding.mainScrollView.visibility = View.VISIBLE
+                movieCreditsViewModel.getMovieCreditsById(movieId ?: 0)
+                movieCreditsViewModel.movieCreditsLoading.observe(viewLifecycleOwner) { isCreditLoading ->
+                    if (!isCreditLoading) {
+                        binding.progressBar.visibility = View.GONE
+                        binding.mainScrollView.visibility = View.VISIBLE
 
-                val movieDetail = movieViewModel.movieDetail.value
-                bind(movieDetail)
+                        val movieDetail = movieDetailViewModel.movieDetail.value
+                        val movieCredits = movieCreditsViewModel.movieCredits.value
+                        bind(movieDetail, movieCredits)
+                    }
+                }
             }
         }
     }
 
-    private fun bind(movieDetail: MovieDetail?) {
+    private fun bind(
+        movieDetail: MovieDetail?,
+        movieCredits: Credits?,
+    ) {
         val imagePath = Constants.IMAGE_BASE_URL + movieDetail?.posterPath
         val formattedAverage = String.format(
             Locale.getDefault(),
@@ -71,6 +83,8 @@ class DetailFragment : Fragment() {
             movieDetail?.voteAverage,
         )
         val formattedDate = movieDetail?.releaseDate?.formatDate()
+        val directorName = movieCredits?.crew?.find { it.job == "Director" }?.name
+        val playersAdapter = DetailPlayersAdapter(movieCredits?.cast)
 
         // Image
         Picasso.get().load(imagePath).into(binding.imageView)
@@ -96,11 +110,14 @@ class DetailFragment : Fragment() {
         binding.durationTextView.text = movieDetail?.runtime?.formatToTime()
 
         // Director
+        println(movieCredits)
+        binding.directorNameChip.text = directorName
 
         // Overview
         binding.overviewTextView.text = movieDetail?.overview
 
         // PlayersAdapter
+        binding.playersRecyclerView.adapter = playersAdapter
 
         // TabLayoutAdapter
     }
