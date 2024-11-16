@@ -73,15 +73,15 @@ class HomeFragment : Fragment() {
         movieViewModel.fetchPopularMovies()
         movieViewModel.popularLoading.observe(viewLifecycleOwner) { isLoading ->
             if (!isLoading) {
-                binding.popularMoviesProgressBar.visibility = View.GONE
-                binding.popularMoviesRecyclerView.visibility = View.VISIBLE
-
                 homePopularMoviesAdapter = HomeVerticalCardAdapter(
                     parentFragmentManager,
                     movieViewModel.popularMovies.value!!,
                     genres,
                 )
                 binding.popularMoviesRecyclerView.adapter = homePopularMoviesAdapter
+
+                binding.popularMoviesProgressBar.visibility = View.GONE
+                binding.popularMoviesRecyclerView.visibility = View.VISIBLE
             }
         }
     }
@@ -90,15 +90,15 @@ class HomeFragment : Fragment() {
         movieViewModel.fetchTopRatedMovies()
         movieViewModel.topRatedLoading.observe(viewLifecycleOwner) { isLoading ->
             if (!isLoading) {
-                binding.topRatedMoviesProgressBar.visibility = View.GONE
-                binding.topRatedMoviesRecyclerView.visibility = View.VISIBLE
-
                 homeTopRatedMoviesAdapter = HomeVerticalCardAdapter(
                     parentFragmentManager,
                     movieViewModel.topRatedMovies.value!!,
                     genres,
                 )
                 binding.topRatedMoviesRecyclerView.adapter = homeTopRatedMoviesAdapter
+
+                binding.topRatedMoviesProgressBar.visibility = View.GONE
+                binding.topRatedMoviesRecyclerView.visibility = View.VISIBLE
             }
         }
     }
@@ -107,15 +107,15 @@ class HomeFragment : Fragment() {
         movieViewModel.fetchUpcomingMovies()
         movieViewModel.upcomingLoading.observe(viewLifecycleOwner) { isLoading ->
             if (!isLoading) {
-                binding.upcomingMoviesProgressBar.visibility = View.GONE
-                binding.upcomingMoviesRecyclerView.visibility = View.VISIBLE
-
                 homeUpcomingMoviesAdapter = HomeVerticalCardAdapter(
                     parentFragmentManager,
                     movieViewModel.upcomingMovies.value!!,
                     genres,
                 )
                 binding.upcomingMoviesRecyclerView.adapter = homeUpcomingMoviesAdapter
+
+                binding.upcomingMoviesProgressBar.visibility = View.GONE
+                binding.upcomingMoviesRecyclerView.visibility = View.VISIBLE
             }
         }
     }

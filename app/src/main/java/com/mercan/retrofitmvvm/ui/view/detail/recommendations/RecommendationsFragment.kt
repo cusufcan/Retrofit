@@ -36,9 +36,6 @@ class RecommendationsFragment : Fragment() {
         movieRecommendationsViewModel.getRecommendationsById(id)
         movieRecommendationsViewModel.movieRecommendationsLoading.observe(viewLifecycleOwner) { isLoading ->
             if (!isLoading) {
-                binding.progressBar.visibility = View.GONE
-                binding.recommendationsRecyclerView.visibility = View.VISIBLE
-
                 val adapter = RecommendationsAdapter(
                     parentFragmentManager,
                     movieRecommendationsViewModel.movieRecommendations.value!!,
@@ -46,6 +43,9 @@ class RecommendationsFragment : Fragment() {
                 )
 
                 binding.recommendationsRecyclerView.adapter = adapter
+
+                binding.progressBar.visibility = View.GONE
+                binding.recommendationsRecyclerView.visibility = View.VISIBLE
             }
         }
     }

@@ -62,12 +62,12 @@ class DetailFragment : Fragment() {
                 movieCreditsViewModel.getMovieCreditsById(movieId ?: 0)
                 movieCreditsViewModel.movieCreditsLoading.observe(viewLifecycleOwner) { isCreditLoading ->
                     if (!isCreditLoading) {
-                        binding.progressBar.visibility = View.GONE
-                        binding.mainScrollView.visibility = View.VISIBLE
-
                         val movieDetail = movieDetailViewModel.movieDetail.value
                         val movieCredits = movieCreditsViewModel.movieCredits.value
                         bind(movieDetail, movieCredits)
+
+                        binding.progressBar.visibility = View.GONE
+                        binding.mainScrollView.visibility = View.VISIBLE
                     }
                 }
             }
