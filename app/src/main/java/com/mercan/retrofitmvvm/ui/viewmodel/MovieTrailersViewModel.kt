@@ -21,7 +21,13 @@ class MovieTrailersViewModel : ViewModel() {
         movieTrailersLoading.postValue(true)
         val response = movieTrailersRepository.getMovieTrailersById(id)
         if (response.isSuccessful) {
-            movieTrailers.postValue(response.body())
+            val pureData = response.body()
+            val trailers = pureData?.results?.filter { it.type == "Trailer" }
+            val trailerList = TrailerList(
+                pureData?.id ?: 0,
+                trailers ?: emptyList()
+            )
+            movieTrailers.postValue(trailerList)
         } else {
             errorMessage.postValue(response.message())
         }
