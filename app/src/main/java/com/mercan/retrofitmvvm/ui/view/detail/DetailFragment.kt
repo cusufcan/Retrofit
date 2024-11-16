@@ -49,6 +49,7 @@ class DetailFragment : Fragment() {
 
     private fun setOnClickListeners() {
         binding.backButton.setOnClickListener {
+            movieDetailViewModel.movieDetailLoading.postValue(true)
             findNavController().popBackStack()
         }
     }

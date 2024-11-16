@@ -21,8 +21,7 @@ class RecommendationsFragment : Fragment() {
     private val movieViewModel: MovieViewModel by activityViewModels()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentRecommendationsBinding.inflate(inflater, container, false)
 
@@ -33,7 +32,7 @@ class RecommendationsFragment : Fragment() {
 
     private fun setData() {
         val id = movieDetailViewModel.movieDetail.value?.id ?: 0
-        
+
         movieRecommendationsViewModel.getRecommendationsById(id)
         movieRecommendationsViewModel.movieRecommendationsLoading.observe(viewLifecycleOwner) { isLoading ->
             if (!isLoading) {
@@ -49,5 +48,10 @@ class RecommendationsFragment : Fragment() {
                 binding.recommendationsRecyclerView.adapter = adapter
             }
         }
+    }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
     }
 }
