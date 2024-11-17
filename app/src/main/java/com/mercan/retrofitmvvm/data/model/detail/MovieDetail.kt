@@ -8,7 +8,7 @@ data class MovieDetail(
     @SerializedName("backdrop_path") val backdropPath: String,
     @SerializedName("belongs_to_collection") val belongsToCollection: Any?,
     @SerializedName("budget") val budget: Long,
-    @SerializedName("genres:") val genres: List<Genre>,
+    @SerializedName("genres") val genres: List<Genre>,
     @SerializedName("homepage") val homepage: String,
     @SerializedName("id") val id: Long,
     @SerializedName("imdb_id") val imdbId: String,
