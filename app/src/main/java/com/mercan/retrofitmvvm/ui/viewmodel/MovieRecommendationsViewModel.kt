@@ -15,16 +15,14 @@ class MovieRecommendationsViewModel : ViewModel() {
     val movieRecommendations = MutableLiveData<MovieList>()
     val movieRecommendationsLoading = MutableLiveData<Boolean>()
 
-    val errorMessage = MutableLiveData<String>()
+    private val errorMessage = MutableLiveData<String>()
 
     fun getRecommendationsById(id: Long) = viewModelScope.launch {
         movieRecommendationsLoading.postValue(true)
         val response = movieRecommendationsRepository.getRecommendationsById(id = id)
         if (response.isSuccessful) {
-            println(response.body())
             movieRecommendations.postValue(response.body())
         } else {
-            println(response.message())
             errorMessage.postValue(response.message())
         }
         movieRecommendationsLoading.postValue(false)
