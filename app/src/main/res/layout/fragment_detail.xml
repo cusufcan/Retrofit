@@ -41,7 +41,7 @@
                 android:backgroundTint="?attr/colorOnPrimary"
                 android:contentDescription="@string/back"
                 app:cornerRadius="28dp"
-                app:icon="@drawable/arrow_left_alt"
+                app:icon="@drawable/ic_arrow_left_alt_outlined"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -149,7 +149,7 @@
                         android:id="@+id/durationImageView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/schedule"
+                        android:background="@drawable/ic_schedule_outlined"
                         android:backgroundTint="?attr/colorOutlineVariant"
                         android:contentDescription="@string/duration"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -251,7 +251,7 @@
                         android:layout_height="wrap_content"
                         android:backgroundTint="?attr/colorOnPrimary"
                         android:contentDescription="@string/favorite"
-                        android:src="@drawable/favorite"
+                        android:src="@drawable/ic_favorite_outlined"
                         app:elevation="0dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

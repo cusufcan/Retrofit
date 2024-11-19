@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/back"
-            android:src="@drawable/arrow_left_alt"
+            android:src="@drawable/ic_arrow_left_alt_outlined"
             app:cornerRadius="16dp"
             app:elevation="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
