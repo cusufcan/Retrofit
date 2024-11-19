@@ -15,7 +15,7 @@ class SeeAllViewHolder(private val binding: MovieCardBigWrapBinding) :
     RecyclerView.ViewHolder(binding.root) {
     fun bind(
         movie: Movie?,
-        genreList: GenreList,
+        genreList: GenreList?,
         onItemClick: (movie: Movie?) -> Unit,
     ) {
         val path = Constants.IMAGE_BASE_URL + movie?.posterPath
@@ -24,7 +24,7 @@ class SeeAllViewHolder(private val binding: MovieCardBigWrapBinding) :
             "%.1f",
             movie?.voteAverage,
         )
-        val genres = genreList.findGenresByIds(movie?.genreIds)
+        val genres = genreList?.findGenresByIds(movie?.genreIds)
 
         Picasso.get().load(path).into(binding.imageView)
         binding.titleTextView.text = movie?.title
@@ -33,7 +33,7 @@ class SeeAllViewHolder(private val binding: MovieCardBigWrapBinding) :
             formattedAverage,
             movie?.voteCount?.formatToString(),
         )
-        binding.genresTextView.text = genres.joinToString(", ") { it.name }
+        binding.genresTextView.text = genres?.joinToString(", ") { it.name }
 
         binding.root.setOnClickListener {
             onItemClick(movie)
