@@ -24,6 +24,7 @@
 
     <!-- ExploreFragment -->
     <string name="explore">Explore</string>
+    <string name="filter">Filter</string>
 
     <!-- ListFragment -->
     <string name="list">My List</string>
