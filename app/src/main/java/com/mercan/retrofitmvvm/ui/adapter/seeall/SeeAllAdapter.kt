@@ -9,13 +9,11 @@ import com.mercan.retrofitmvvm.core.Constants
 import com.mercan.retrofitmvvm.core.Route
 import com.mercan.retrofitmvvm.data.model.GenreList
 import com.mercan.retrofitmvvm.data.model.Movie
-import com.mercan.retrofitmvvm.data.model.MovieList
 import com.mercan.retrofitmvvm.databinding.MovieCardBigWrapBinding
 import com.mercan.retrofitmvvm.ui.bottomsheet.HomeBottomSheetDialog
 
 class SeeAllAdapter(
     private val fragmentManager: FragmentManager,
-    private val movies: MovieList? = null,
     private val genres: GenreList? = null,
 ) : PagingDataAdapter<Movie, SeeAllViewHolder>(differCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SeeAllViewHolder {
