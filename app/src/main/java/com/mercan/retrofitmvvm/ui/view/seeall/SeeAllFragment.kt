@@ -6,21 +6,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.mercan.retrofitmvvm.R
 import com.mercan.retrofitmvvm.core.Constants
-import com.mercan.retrofitmvvm.data.model.GenreList
-import com.mercan.retrofitmvvm.data.model.MovieList
 import com.mercan.retrofitmvvm.databinding.FragmentSeeAllBinding
 import com.mercan.retrofitmvvm.ui.adapter.seeall.SeeAllAdapter
 import com.mercan.retrofitmvvm.ui.view.main.MainActivity
 import com.mercan.retrofitmvvm.ui.viewmodel.MovieViewModel
+import com.mercan.retrofitmvvm.ui.viewmodel.SeeAllViewModel
+import kotlinx.coroutines.launch
 
 class SeeAllFragment : Fragment() {
     private var _binding: FragmentSeeAllBinding? = null
     private val binding get() = _binding!!
 
     private val movieViewModel: MovieViewModel by activityViewModels()
+    private val seeAllViewModel: SeeAllViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,38 +60,31 @@ class SeeAllFragment : Fragment() {
     }
 
     private fun setAdapters(from: String) {
+        val adapter = SeeAllAdapter(
+            parentFragmentManager,
+            movieViewModel.genres.value,
+        )
+        lifecycleScope.launch {
+            when (from) {
+                Constants.NOW_PLAYING -> seeAllViewModel.pagedNowPlayingMovieList.collect {
+                    adapter.submitData(it)
+                }
 
-        binding.seeAllRecyclerView.adapter = when (from) {
-            Constants.NOW_PLAYING -> SeeAllAdapter(
-                parentFragmentManager,
-                movieViewModel.nowPlayingMovies.value ?: MovieList.empty(),
-                movieViewModel.genres.value ?: GenreList.empty()
-            )
+                Constants.POPULAR -> seeAllViewModel.pagedPopularMovieList.collect {
+                    adapter.submitData(it)
+                }
 
-            Constants.POPULAR -> SeeAllAdapter(
-                parentFragmentManager,
-                movieViewModel.popularMovies.value ?: MovieList.empty(),
-                movieViewModel.genres.value ?: GenreList.empty()
-            )
+                Constants.TOP_RATED -> seeAllViewModel.pagedTopRatedMovieList.collect {
+                    adapter.submitData(it)
+                }
 
-            Constants.TOP_RATED -> SeeAllAdapter(
-                parentFragmentManager,
-                movieViewModel.topRatedMovies.value ?: MovieList.empty(),
-                movieViewModel.genres.value ?: GenreList.empty()
-            )
-
-            Constants.UPCOMING -> SeeAllAdapter(
-                parentFragmentManager,
-                movieViewModel.upcomingMovies.value ?: MovieList.empty(),
-                movieViewModel.genres.value ?: GenreList.empty()
-            )
-
-            else -> SeeAllAdapter(
-                parentFragmentManager,
-                movieViewModel.upcomingMovies.value ?: MovieList.empty(),
-                movieViewModel.genres.value ?: GenreList.empty()
-            )
+                Constants.UPCOMING -> seeAllViewModel.pagedUpcomingMovieList.collect {
+                    adapter.submitData(it)
+                }
+            }
         }
+
+        binding.seeAllRecyclerView.adapter = adapter
     }
 
     override fun onDestroyView() {
